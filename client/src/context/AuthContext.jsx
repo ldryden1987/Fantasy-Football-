@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import api from "../services/api";
-import { set } from "mongoose";
+
 
 const AuthContext = createContext()
 
@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const token = localStorage.getItem('token')
         if (token) {
-            api.get('aurh/me')
+            api.get('auth/me')
             .then((res) => setUser(res.data))
             .catch(() => localStorage.removeItem('token'))
             .finally(() => setLoading(false))
