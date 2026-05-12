@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const leagueRoutes = require('./routes/leagues');
+const playerRoutes = require('./routes/players');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
@@ -15,6 +17,9 @@ app.use(cookieParser());
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/leagues', leagueRoutes);
+app.use('/api/players', playerRoutes);
+
 
 // Health check
 app.get('/api/health', (req, res) =>

@@ -5,7 +5,6 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
-
   },
   "keywords": [],
   "author": "",
@@ -18,7 +17,8 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.6.1"
+    "mongoose": "^9.6.1",
+    "node-fetch": "^2.7.0"
   },
   "devDependencies": {
     "install": "^0.13.0",
