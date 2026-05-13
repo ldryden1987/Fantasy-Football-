@@ -14,7 +14,7 @@ const TeamSchema = new mongoose.Schema({
     League: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'League',
-        required: true
+        required: false
     },
     roster: [{
         player: { type: mongoose.Schema.Types.ObjectId, ref: 'Player' },
