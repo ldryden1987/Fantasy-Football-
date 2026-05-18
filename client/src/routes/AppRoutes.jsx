@@ -9,6 +9,7 @@ import LeagueHome from '../pages/LeagueHome'
 import Roster from '../pages/Roster'
 import Players from '../pages/Players'
 import ProtectedRoute from './ProtectedRoute'
+import DraftRoom from '../pages/DraftRoom'
 
 const AppRoutes = () => {
   const { user } = useAuth()
@@ -24,6 +25,7 @@ const AppRoutes = () => {
       <Route path="/league/:id" element={<ProtectedRoute><LeagueHome /></ProtectedRoute>} />
       <Route path="/league/:id/roster" element={<ProtectedRoute><Roster /></ProtectedRoute>} />
       <Route path="/league/:id/players" element={<ProtectedRoute><Players /></ProtectedRoute>} />
+      <Route path="/league/:id/draft" element={<ProtectedRoute><DraftRoom /></ProtectedRoute>} />
     </Routes>
   )
 }

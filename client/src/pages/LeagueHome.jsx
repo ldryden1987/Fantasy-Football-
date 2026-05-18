@@ -65,10 +65,11 @@ const LeagueHome = () => {
         {/* Quick Links */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           {[
-            { title: '📋 My Roster', desc: 'Manage your players', path: `/league/${id}/roster` },
-            { title: '🏈 Player Browser', desc: 'Browse all NFL players', path: `/league/${id}/players` },
-            { title: '🎯 Draft Room', desc: 'Coming in Phase 3', path: '#' },
-          ].map((card) => (
+             { title: '📋 My Roster', desc: 'Manage your players', path: `/league/${id}/roster` },
+             { title: '🏈 Player Browser', desc: 'Browse all NFL players', path: `/league/${id}/players` },
+             { title: '🎯 Draft Room', desc: 'Join your league draft', path: `/league/${id}/draft` },
+            ].map((card) => (
+
             <Link
               key={card.title}
               to={card.path}
