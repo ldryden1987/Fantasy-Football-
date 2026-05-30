@@ -11,6 +11,8 @@ import Players from '../pages/Players'
 import DraftRoom from '../pages/DraftRoom'
 import Scoring from '../pages/Scoring'
 import Standings from '../pages/Standings'
+import Trades from '../pages/Trades'
+import Waivers from '../pages/Waivers'
 import ProtectedRoute from './ProtectedRoute'
 
 const AppRoutes = () => {
@@ -30,8 +32,11 @@ const AppRoutes = () => {
       <Route path="/league/:id/draft" element={<ProtectedRoute><DraftRoom /></ProtectedRoute>} />
       <Route path="/league/:id/scoring" element={<ProtectedRoute><Scoring /></ProtectedRoute>} />
       <Route path="/league/:id/standings" element={<ProtectedRoute><Standings /></ProtectedRoute>} />
+      <Route path="/league/:id/trades" element={<ProtectedRoute><Trades /></ProtectedRoute>} />
+      <Route path="/league/:id/waivers" element={<ProtectedRoute><Waivers /></ProtectedRoute>} />
     </Routes>
   )
 }
 
 export default AppRoutes
+

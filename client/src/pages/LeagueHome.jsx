@@ -63,14 +63,16 @@ const LeagueHome = () => {
         </div>
 
         {/* Quick Links */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
           {[
-            { title: '📋 My Roster', desc: 'Manage your players', path: `/league/${id}/roster` },
-            { title: '🏈 Player Browser', desc: 'Browse all NFL players', path: `/league/${id}/players` },
-            { title: '🎯 Draft Room', desc: 'Join your league draft', path: `/league/${id}/draft` },
-            { title: '📺 Live Scoring', desc: 'View weekly matchups', path: `/league/${id}/scoring` },
-            { title: '📊 Standings', desc: 'League standings', path: `/league/${id}/standings` },
-          ].map((card) => (
+             { title: '📋 My Roster', desc: 'Manage your players', path: `/league/${id}/roster` },
+             { title: '🏈 Player Browser', desc: 'Browse all NFL players', path: `/league/${id}/players` },
+             { title: '🎯 Draft Room', desc: 'Join your league draft', path: `/league/${id}/draft` },
+             { title: '📺 Live Scoring', desc: 'View weekly matchups', path: `/league/${id}/scoring` },
+             { title: '📊 Standings', desc: 'League standings', path: `/league/${id}/standings` },
+             { title: '🔄 Trade Center', desc: 'Send and receive trades', path: `/league/${id}/trades` },
+             { title: '📥 Waiver Wire', desc: 'Pick up free agents', path: `/league/${id}/waivers` },
+            ].map((card) => (
             <Link
               key={card.title}
               to={card.path}

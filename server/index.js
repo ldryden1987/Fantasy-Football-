@@ -11,6 +11,9 @@ const leagueRoutes = require('./routes/leagues');
 const playerRoutes = require('./routes/players');
 const draftRoutes = require('./routes/draft');
 const matchupRoutes = require('./routes/matchups');
+const tradeRoutes = require('./routes/trades');
+const waiverRoutes = require('./routes/waivers');
+
 
 const app = express();
 const server = http.createServer(app);
@@ -32,6 +35,9 @@ app.use('/api/leagues', leagueRoutes);
 app.use('/api/players', playerRoutes);
 app.use('/api/draft', draftRoutes);
 app.use('/api/matchups', matchupRoutes);
+app.use('/api/trades', tradeRoutes);
+app.use('/api/waivers', waiverRoutes);
+
 
 // Health check
 app.get('/api/health', (req, res) =>
