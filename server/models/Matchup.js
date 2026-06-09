@@ -38,6 +38,12 @@ const MatchupSchema = new mongoose.Schema ({
         ref: 'Team',
         default: null
     },
+    isPlayoff: { type: Boolean, default: false },
+    playoffRound: {
+    type: String,
+    enum: ['semifinal', 'final', 'third_place', null],
+    default: null
+  },
     createdAt: {
         type: Date,
         default: Date.now

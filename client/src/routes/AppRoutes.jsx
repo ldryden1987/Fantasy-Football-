@@ -13,10 +13,11 @@ import Scoring from '../pages/Scoring'
 import Standings from '../pages/Standings'
 import Trades from '../pages/Trades'
 import Waivers from '../pages/Waivers'
-import ProtectedRoute from './ProtectedRoute'
 import News from '../pages/News'
 import TradeAnalyzer from '../pages/TradeAnalyzer'
-
+import CommissionerDashboard from '../pages/CommissionerDashboard'
+import PlayoffBracket from '../pages/PlayoffBracket'
+import ProtectedRoute from './ProtectedRoute'
 
 const AppRoutes = () => {
   const { user } = useAuth()
@@ -37,8 +38,10 @@ const AppRoutes = () => {
       <Route path="/league/:id/standings" element={<ProtectedRoute><Standings /></ProtectedRoute>} />
       <Route path="/league/:id/trades" element={<ProtectedRoute><Trades /></ProtectedRoute>} />
       <Route path="/league/:id/waivers" element={<ProtectedRoute><Waivers /></ProtectedRoute>} />
-      <Route path="/news" element={<ProtectedRoute><News /></ProtectedRoute>} />
       <Route path="/league/:id/trade-analyzer" element={<ProtectedRoute><TradeAnalyzer /></ProtectedRoute>} />
+      <Route path="/league/:id/commissioner" element={<ProtectedRoute><CommissionerDashboard /></ProtectedRoute>} />
+      <Route path="/league/:id/playoffs" element={<ProtectedRoute><PlayoffBracket /></ProtectedRoute>} />
+      <Route path="/news" element={<ProtectedRoute><News /></ProtectedRoute>} />
     </Routes>
   )
 }

@@ -73,6 +73,9 @@ const LeagueHome = () => {
              { title: '🔄 Trade Center', desc: 'Send and receive trades', path: `/league/${id}/trades` },
              { title: '📥 Waiver Wire', desc: 'Pick up free agents', path: `/league/${id}/waivers` },
              { title: '🤖 Trade Analyzer', desc: 'AI-powered trade analysis', path: `/league/${id}/trade-analyzer` },
+             { title: '⚙️ Commissioner', desc: 'Manage league settings', path: `/league/${id}/commissioner` },
+             { title: '🏆 Playoffs', desc: 'Playoff bracket', path: `/league/${id}/playoffs` },
+
             ].map((card) => (
             <Link
               key={card.title}

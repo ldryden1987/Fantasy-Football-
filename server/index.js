@@ -15,6 +15,9 @@ const tradeRoutes = require('./routes/trades');
 const waiverRoutes = require('./routes/waivers');
 const newsRoutes = require('./routes/news');
 const aiRoutes = require('./routes/ai');
+const commissionerRoutes = require('./routes/commissioner');
+const playoffRoutes = require('./routes/playoffs');
+
 
 
 
@@ -42,6 +45,9 @@ app.use('/api/trades', tradeRoutes);
 app.use('/api/waivers', waiverRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/ai', aiRoutes);
+app.use('/api/commissioner', commissionerRoutes);
+app.use('/api/playoffs', playoffRoutes);
+
 
 
 // Health check
