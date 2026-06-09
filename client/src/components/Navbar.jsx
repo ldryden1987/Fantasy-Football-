@@ -39,6 +39,19 @@ const Navbar = () => {
               >
                 🏈 Players
               </Link>
+              <Link
+                to="/news"
+                className="text-gray-300 hover:text-white text-sm transition-colors"
+              >
+              📰 News
+              </Link>
+              <Link
+                to={`/league/${activeLeague._id}/trade-analyzer`}
+                className="text-gray-300 hover:text-white text-sm transition-colors"
+              >
+              🤖 AI
+              </Link>
+
             </div>
           )}
         </div>

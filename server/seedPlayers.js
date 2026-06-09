@@ -25,11 +25,20 @@ const seed = async () => {
     console.log(`✅ Filtered to ${filtered.length} active players`);
 
     // Map Sleeper data to our Player schema
-    const players = filtered.map((p) => ({
+     const players = filtered.map((p) => ({
       name: p.full_name,
       position: p.position,
       nflTeam: p.team,
       status: p.injury_status ? 'injured' : 'active',
+      injuryStatus: p.injury_status || null,
+      injuryBodyPart: p.injury_body_part || null,
+      injuryNotes: p.injury_notes || null,
+      byeWeek: p.bye_week || null,
+      age: p.age || null,
+      experience: p.years_exp || null,
+      college: p.college || null,
+      number: p.number || null,
+      depthChartOrder: p.depth_chart_order || null,
       stats: {
         passingYards: 0,
         passingTDs: 0,

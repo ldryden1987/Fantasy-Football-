@@ -13,6 +13,9 @@ const draftRoutes = require('./routes/draft');
 const matchupRoutes = require('./routes/matchups');
 const tradeRoutes = require('./routes/trades');
 const waiverRoutes = require('./routes/waivers');
+const newsRoutes = require('./routes/news');
+const aiRoutes = require('./routes/ai');
+
 
 
 const app = express();
@@ -37,6 +40,8 @@ app.use('/api/draft', draftRoutes);
 app.use('/api/matchups', matchupRoutes);
 app.use('/api/trades', tradeRoutes);
 app.use('/api/waivers', waiverRoutes);
+app.use('/api/news', newsRoutes);
+app.use('/api/ai', aiRoutes);
 
 
 // Health check

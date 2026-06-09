@@ -72,6 +72,7 @@ const LeagueHome = () => {
              { title: '📊 Standings', desc: 'League standings', path: `/league/${id}/standings` },
              { title: '🔄 Trade Center', desc: 'Send and receive trades', path: `/league/${id}/trades` },
              { title: '📥 Waiver Wire', desc: 'Pick up free agents', path: `/league/${id}/waivers` },
+             { title: '🤖 Trade Analyzer', desc: 'AI-powered trade analysis', path: `/league/${id}/trade-analyzer` },
             ].map((card) => (
             <Link
               key={card.title}

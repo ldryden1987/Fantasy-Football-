@@ -98,6 +98,7 @@ const Dashboard = () => {
             { title: '🎯 Draft Room', desc: 'Join your league draft', path: '/draft' },
             { title: '🔄 Trade Center', desc: 'Send and receive trades', path: '/trades' },
             { title: '📥 Waiver Wire', desc: 'Pick up free agents', path: '/waivers' },
+            { title: '📰 Player News', desc: 'Injury reports and trending players', path: '/news' },
           ].map((card) => (
             <div
               key={card.title}
