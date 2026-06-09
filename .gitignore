@@ -1,1 +1,3 @@
 node_modules
+echo "server/.env" >> .gitignore
+echo "client/.env" >> .gitignore
