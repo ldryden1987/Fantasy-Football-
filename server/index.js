@@ -17,6 +17,7 @@ const newsRoutes = require('./routes/news');
 const aiRoutes = require('./routes/ai');
 const commissionerRoutes = require('./routes/commissioner');
 const playoffRoutes = require('./routes/playoffs');
+const notificationRoutes = require('./routes/notifications');
 
 
 
@@ -47,6 +48,7 @@ app.use('/api/news', newsRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/commissioner', commissionerRoutes);
 app.use('/api/playoffs', playoffRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 
 

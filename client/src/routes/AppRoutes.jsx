@@ -18,6 +18,8 @@ import TradeAnalyzer from '../pages/TradeAnalyzer'
 import CommissionerDashboard from '../pages/CommissionerDashboard'
 import PlayoffBracket from '../pages/PlayoffBracket'
 import ProtectedRoute from './ProtectedRoute'
+import Notifications from '../pages/Notifications'
+
 
 const AppRoutes = () => {
   const { user } = useAuth()
@@ -42,6 +44,7 @@ const AppRoutes = () => {
       <Route path="/league/:id/commissioner" element={<ProtectedRoute><CommissionerDashboard /></ProtectedRoute>} />
       <Route path="/league/:id/playoffs" element={<ProtectedRoute><PlayoffBracket /></ProtectedRoute>} />
       <Route path="/news" element={<ProtectedRoute><News /></ProtectedRoute>} />
+      <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
     </Routes>
   )
 }

@@ -1,6 +1,9 @@
 const Trade = require('../models/Trade');
 const Team = require('../models/Team');
 const Player = require('../models/Player');
+const { createNotification } = require('./notificationController');
+const User = require('../models/User');
+
 
 // POST /api/trades/:leagueId/send
 const sendTrade = async (req, res) => {
@@ -28,6 +31,18 @@ const sendTrade = async (req, res) => {
       receiverPlayers,
       message: message || ''
     });
+
+    //Notify reciver
+    const receiverTeamFull = await Team.findById(receiverTeamId).populate('owner')
+    if (receiverTeamFull?.owner) {
+      await createNotification({
+        user: receiverTeamFull.owner._id,
+        league: req.params.leagueId,
+        type: 'New Trade Offer',
+        message: `${senderTeam.name} sent you a trade offer`,
+        link: `/league/${req.params.leagueId}/trades`
+      })
+    }
 
     const populated = await Trade.findById(trade._id)
       .populate('senderTeam', 'name')
@@ -60,6 +75,19 @@ const acceptTrade = async (req, res) => {
 
     if (!receiverTeam) {
       return res.status(403).json({ message: 'Not authorized to accept this trade' });
+    }
+
+    // Notify Sender
+    const senderTeamFull = await Team.findById(trade.senderTeam).populate('owner')
+    if (senderTeamFull?.owner) {
+      await createNotification({
+        user: senderTeamFull.owner._id,
+        league: trade.league,
+        type: 'trade_accepted',
+        title: 'Trade Accepted',
+        message: `${receiverTeam.name} accepted your trade offer!`,
+        link: `/league/${trade.league}/trades`
+      })
     }
 
     // Swap players between teams
@@ -112,6 +140,18 @@ const rejectTrade = async (req, res) => {
 
     trade.status = 'rejected';
     await trade.save();
+
+    const senderTeamFull = await Team.findById(trade.senderTeam).populate('owner')
+    if (senderTeamFull?.owner) {
+      await createNotification({
+        user: senderTeamFull.owner._id,
+        league: trade.league,
+        type: 'trade_rejected',
+        title:'trade Rejected',
+        message: `Your trade offer was rejected`,
+        link: `/league/${trade.league}/trades`
+      })
+    }
 
     res.json({ message: 'Trade rejected', trade });
   } catch (err) {
