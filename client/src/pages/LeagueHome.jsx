@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { getLeague } from '../services/leagueService'
 import Navbar from '../components/Navbar'
+import TeamAvatar from '../components/TeamAvatar'
 
 const LeagueHome = () => {
   const { id } = useParams()
@@ -31,17 +32,17 @@ const LeagueHome = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <Navbar />
-      <div className="max-w-6xl mx-auto px-6 py-12">
+      <div className="max-w-6xl mx-auto px-4 py-8">
 
         {/* League Header */}
-        <div className="bg-gray-800 rounded-2xl p-8 mb-8">
+        <div className="bg-gray-800 rounded-2xl p-6 md:p-8 mb-8">
           <div className="flex justify-between items-start">
             <div>
-              <h2 className="text-3xl font-bold">{league?.name}</h2>
+              <h2 className="text-2xl md:text-3xl font-bold">{league?.name}</h2>
               <p className="text-gray-400 mt-1">
                 Commissioner: <span className="text-green-400">{league?.commissioner?.username}</span>
               </p>
-              <div className="flex gap-4 mt-3">
+              <div className="flex flex-wrap gap-3 mt-3">
                 <span className="text-sm text-gray-400">
                   {league?.settings?.scoringType?.toUpperCase()} Scoring
                 </span>
@@ -55,7 +56,7 @@ const LeagueHome = () => {
             </div>
             <div className="text-right">
               <p className="text-gray-400 text-sm">Invite Code</p>
-              <p className="text-green-400 font-mono font-bold text-2xl">
+              <p className="text-green-400 font-mono font-bold text-xl md:text-2xl">
                 {league?.inviteCode}
               </p>
             </div>
@@ -63,27 +64,26 @@ const LeagueHome = () => {
         </div>
 
         {/* Quick Links */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
           {[
-             { title: '📋 My Roster', desc: 'Manage your players', path: `/league/${id}/roster` },
-             { title: '🏈 Player Browser', desc: 'Browse all NFL players', path: `/league/${id}/players` },
-             { title: '🎯 Draft Room', desc: 'Join your league draft', path: `/league/${id}/draft` },
-             { title: '📺 Live Scoring', desc: 'View weekly matchups', path: `/league/${id}/scoring` },
-             { title: '📊 Standings', desc: 'League standings', path: `/league/${id}/standings` },
-             { title: '🔄 Trade Center', desc: 'Send and receive trades', path: `/league/${id}/trades` },
-             { title: '📥 Waiver Wire', desc: 'Pick up free agents', path: `/league/${id}/waivers` },
-             { title: '🤖 Trade Analyzer', desc: 'AI-powered trade analysis', path: `/league/${id}/trade-analyzer` },
-             { title: '⚙️ Commissioner', desc: 'Manage league settings', path: `/league/${id}/commissioner` },
-             { title: '🏆 Playoffs', desc: 'Playoff bracket', path: `/league/${id}/playoffs` },
-
-            ].map((card) => (
+            { title: '📋 My Roster', desc: 'Manage your players', path: `/league/${id}/roster` },
+            { title: '🏈 Player Browser', desc: 'Browse all NFL players', path: `/league/${id}/players` },
+            { title: '🎯 Draft Room', desc: 'Join your league draft', path: `/league/${id}/draft` },
+            { title: '📺 Live Scoring', desc: 'View weekly matchups', path: `/league/${id}/scoring` },
+            { title: '📊 Standings', desc: 'League standings', path: `/league/${id}/standings` },
+            { title: '🔄 Trade Center', desc: 'Send and receive trades', path: `/league/${id}/trades` },
+            { title: '📥 Waiver Wire', desc: 'Pick up free agents', path: `/league/${id}/waivers` },
+            { title: '🤖 Trade Analyzer', desc: 'AI-powered analysis', path: `/league/${id}/trade-analyzer` },
+            { title: '⚙️ Commissioner', desc: 'Manage league settings', path: `/league/${id}/commissioner` },
+            { title: '🏆 Playoffs', desc: 'Playoff bracket', path: `/league/${id}/playoffs` },
+          ].map((card) => (
             <Link
               key={card.title}
               to={card.path}
-              className="bg-gray-800 border border-gray-700 hover:border-green-500 rounded-2xl p-6 transition-colors"
+              className="bg-gray-800 border border-gray-700 hover:border-green-500 rounded-2xl p-4 transition-colors"
             >
-              <h4 className="text-lg font-bold mb-1">{card.title}</h4>
-              <p className="text-gray-400 text-sm">{card.desc}</p>
+              <h4 className="text-sm md:text-base font-bold mb-1">{card.title}</h4>
+              <p className="text-gray-400 text-xs hidden sm:block">{card.desc}</p>
             </Link>
           ))}
         </div>
@@ -96,7 +96,7 @@ const LeagueHome = () => {
               <thead>
                 <tr className="text-gray-400 border-b border-gray-700">
                   <th className="text-left py-3 px-4">Team</th>
-                  <th className="text-left py-3 px-4">Owner</th>
+                  <th className="text-left py-3 px-4 hidden md:table-cell">Owner</th>
                   <th className="text-center py-3 px-4">W</th>
                   <th className="text-center py-3 px-4">L</th>
                   <th className="text-center py-3 px-4">PTS</th>
@@ -104,16 +104,19 @@ const LeagueHome = () => {
               </thead>
               <tbody>
                 {league?.teams?.map((team, i) => (
-                  <tr key={team._id} className="border-b border-gray-700 hover:bg-gray-700/50">
+                  <tr key={team._id} className="border-b border-gray-700 hover:bg-gray-700/50 transition-colors">
                     <td className="py-3 px-4 font-semibold">
-                      {i + 1}. {team.name}
+                      <div className="flex items-center gap-3">
+                        <TeamAvatar team={team} size="sm" editable={false} />
+                        <span>{i + 1}. {team.name}</span>
+                      </div>
                     </td>
-                    <td className="py-3 px-4 text-gray-400">
+                    <td className="py-3 px-4 text-gray-400 hidden md:table-cell">
                       {team.owner?.username}
                     </td>
-                    <td className="py-3 px-4 text-center text-green-400">{team.wins}</td>
-                    <td className="py-3 px-4 text-center text-red-400">{team.losses}</td>
-                    <td className="py-3 px-4 text-center">{team.points}</td>
+                    <td className="py-3 px-4 text-center text-green-400 font-bold">{team.wins}</td>
+                    <td className="py-3 px-4 text-center text-red-400 font-bold">{team.losses}</td>
+                    <td className="py-3 px-4 text-center font-bold">{team.points}</td>
                   </tr>
                 ))}
               </tbody>
@@ -126,3 +129,4 @@ const LeagueHome = () => {
 }
 
 export default LeagueHome
+

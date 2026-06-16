@@ -12,6 +12,18 @@ const seed = async () => {
     const response = await fetch('https://api.sleeper.app/v1/players/nfl');
     const data = await response.json();
 
+    console.log('📡 Fetching ADP data from Sleeper...');
+    let adpMap = {};
+    try {
+      const adpRes = await fetch('https://api.sleeper.app/v1/players/nfl/research/regular/2025');
+      const adpData = await adpRes.json()
+      for (const [playerId, info] of Object.entries(adpData)) {
+        if (info?.adp_rank) adpMap[playerId] = info.adp_rank;
+      }
+      console.log(`✅ Loaded ADP for ${Object.keys(adpMap).lenght} players`);
+    } catch (adpErr) {
+      console.log('ADP fetch failed, continuinh without it:', adpErr.message);
+    }
     console.log(`📦 Total players received: ${Object.keys(data).length}`);
 
     // Filter to only active skill position players

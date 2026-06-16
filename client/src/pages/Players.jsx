@@ -23,7 +23,7 @@ const Players = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const res = await getPlayers()
+        const res = await getPlayers({ sortBy: 'adp' })
         setPlayers(res.data)
         setFiltered(res.data)
       } catch (err) {
@@ -101,6 +101,7 @@ const Players = () => {
                     <th className="text-left py-3 px-4 hidden md:table-cell">NFL Team</th>
                     <th className="text-left py-3 px-4 hidden md:table-cell">Status</th>
                     <th className="text-left py-3 px-4 hidden lg:table-cell">Age</th>
+                    <th className="text-left py-3 px-4 hidden lg:table-cell">ADP</th>
                     <th className="text-center py-3 px-4">Pts</th>
                   </tr>
                 </thead>
@@ -141,6 +142,9 @@ const Players = () => {
                       <td className="py-3 px-4 text-gray-400 hidden lg:table-cell">
                         {player.age || '—'}
                       </td>
+                      <td className="py-3 px-4 text-gray-400 hidden lg:table-cell">
+                        {player.adp ? `#${player.adp}` : '—'}
+                      </td>
                       <td className="py-3 px-4 text-center text-green-400 font-bold">
                         {player.fantasyPoints}
                       </td>
@@ -157,3 +161,4 @@ const Players = () => {
 }
 
 export default Players
+

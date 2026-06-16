@@ -18,6 +18,7 @@ const aiRoutes = require('./routes/ai');
 const commissionerRoutes = require('./routes/commissioner');
 const playoffRoutes = require('./routes/playoffs');
 const notificationRoutes = require('./routes/notifications');
+const avatarRoutes = require('./routes/avatar');
 
 
 
@@ -49,6 +50,9 @@ app.use('/api/ai', aiRoutes);
 app.use('/api/commissioner', commissionerRoutes);
 app.use('/api/playoffs', playoffRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/avatar', avatarRoutes);
+app.use('/uploads', express.static('uploads'));
+
 
 
 

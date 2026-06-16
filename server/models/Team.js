@@ -18,7 +18,7 @@ const TeamSchema = new mongoose.Schema({
     },
     roster: [{
         player: { type: mongoose.Schema.Types.ObjectId, ref: 'Player' },
-        slot: { type: String, enum: ['QB','RB', 'WR', 'TE', 'FLEX', 'K', 'DEF', 'BN'], default: 'BN'}
+        slot: { type: String, enum: ['QB','RB1','RB2', 'WR','WR2', 'TE', 'FLEX', 'K', 'DEF', 'BN','IR'], default: 'BN'}
     }],
     waiverPriority: {
         type: Number,

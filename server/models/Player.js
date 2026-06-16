@@ -22,6 +22,7 @@ const PlayerSchema = new mongoose.Schema({
   college: { type: String, default: null },
   number: { type: Number, default: null },
   depthChartOrder: { type: Number, default: null },
+  adp: { type: Number, default: null},
   stats: {
     passingYards: { type: Number, default: 0 },
     passingTDs: { type: Number, default: 0 },

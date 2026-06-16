@@ -25,7 +25,7 @@ const LeagueSchema = new mongoose.Schema({
     },
     settings: {
         maxTeams: { type: Number, default: 10},
-        rosterSize: { type: Number, default: 15},
+        rosterSize: { type: Number, default: 17},
         scoringType: { type: String, enum: ['standard', 'ppr', 'half-ppr'], default: 'ppr'},
         draftType: { type: String, enum: ['snake', 'auction'], default: 'snake' },
         playoffWeekStart: { type: Number, default: 14 },

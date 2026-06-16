@@ -24,18 +24,15 @@ const createLeague = async (req, res) => {
       inviteCode
     });
 
-    // Create a team for the commissioner
     const team = await Team.create({
       name: req.user.teamName || `${req.user.username}'s Team`,
       owner: req.user._id,
       league: league._id
     });
 
-    // Add team to league
     league.teams.push(team._id);
     await league.save();
 
-    // Add league to user
     await User.findByIdAndUpdate(req.user._id, {
       $push: { leagues: league._id }
     });
@@ -63,7 +60,6 @@ const joinLeague = async (req, res) => {
       return res.status(400).json({ message: 'League is full' });
     }
 
-    // Create team for new member
     const team = await Team.create({
       name: req.user.teamName || `${req.user.username}'s Team`,
       owner: req.user._id,
@@ -105,7 +101,10 @@ const getLeague = async (req, res) => {
       .populate('members', 'username teamName')
       .populate({
         path: 'teams',
-        populate: { path: 'owner', select: 'username teamName' }
+        populate: [
+          { path: 'owner', select: 'username teamName' },
+          { path: 'roster.player' }
+        ]
       });
 
     if (!league) {
@@ -118,4 +117,28 @@ const getLeague = async (req, res) => {
   }
 };
 
-module.exports = { createLeague, joinLeague, getMyLeagues, getLeague };
+// PUT /api/leagues/:leagueId/roster/move
+const moveRosterSlot = async (req, res) => {
+  const { playerId, newSlot } = req.body;
+  try {
+    const team = await Team.findOne({
+      league: req.params.leagueId,
+      owner: req.user._id
+    });
+
+    if (!team) return res.status(404).json({ message: 'Team not found' });
+
+    const rosterEntry = team.roster.find(r => r.player.toString() === playerId);
+    if (!rosterEntry) return res.status(404).json({ message: 'Player not on your roster' });
+
+    rosterEntry.slot = newSlot;
+    await team.save();
+
+    res.json({ message: 'Roster updated', team });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
+
+module.exports = { createLeague, joinLeague, getMyLeagues, getLeague, moveRosterSlot };
+

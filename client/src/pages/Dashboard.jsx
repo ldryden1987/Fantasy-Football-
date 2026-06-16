@@ -2,6 +2,7 @@ import { useAuth } from '../context/AuthContext'
 import { useLeague } from '../context/LeagueContext'
 import { useNavigate, Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
+import HeadlinesFeed from '../components/HeadlinesFeed'
 
 const Dashboard = () => {
   const { user } = useAuth()
@@ -133,9 +134,15 @@ const Dashboard = () => {
             ))}
           </div>
         )}
+
+        {/* NFL Headlines */}
+        <div className="mt-8">
+          <HeadlinesFeed />
+        </div>
       </div>
     </div>
   )
 }
 
 export default Dashboard
+
